@@ -20,13 +20,6 @@ transform-lambda-bucket-sqs-notifications = [
     "filter_prefix" = "solr-json/tei/"
     "filter_suffix" = ".json"
     "bucket_name"   = "releases"
-  },
-  {
-    "type"          = "SQS",
-    "queue_name"    = "EpsilonIndexPagesQueue"
-    "filter_prefix" = "solr-json/pages/"
-    "filter_suffix" = ".json"
-    "bucket_name"   = "releases"
   }
 ]
 transform-lambda-information = [
@@ -49,26 +42,6 @@ transform-lambda-information = [
       API_HOST = "solr-api-epsilon-ecs.epsilon-editorial-solr"
       API_PORT = "8081"
       API_PATH = "item"
-    }
-  },
-  {
-    "name"                     = "AWSLambda_Pages_SOLR_Listener"
-    "image_uri"                = "563181399728.dkr.ecr.eu-west-1.amazonaws.com/epsilon/solr-listener@sha256:17bd89f36ba61533b874ec73cf6f874fb82cad3846dbb6c5eaf058764597eb9e"
-    "queue_name"               = "EpsilonIndexPagesQueue"
-    "vpc_name"                 = "epsilon-editorial-epsilon-ecs-vpc"
-    "subnet_names"             = ["epsilon-editorial-epsilon-ecs-subnet-private-a", "epsilon-editorial-epsilon-ecs-subnet-private-b"]
-    "security_group_names"     = ["epsilon-editorial-epsilon-ecs-vpc-egress", "epsilon-editorial-solr-external"]
-    "timeout"                  = 180
-    "memory"                   = 1024
-    "batch_window"             = 2
-    "batch_size"               = 1
-    "maximum_concurrency"      = 5
-    "use_datadog_variables"    = false
-    "use_additional_variables" = true
-    "environment_variables" = {
-      API_HOST = "solr-api-epsilon-ecs.epsilon-editorial-solr"
-      API_PORT = "8081"
-      API_PATH = "page"
     }
   }
 ]
