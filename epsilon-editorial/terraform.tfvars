@@ -3,7 +3,7 @@ project                      = "epsilon"
 component                    = "cudl-data-workflows"
 subcomponent                 = "cudl-transform-lambda"
 destination-bucket-name      = "releases"
-web_frontend_domain_name     = "epsilon-editorial.cudl-sandbox.net"
+web_frontend_domain_name     = "epsilon-editorial.epsilon.ac.uk"
 transcriptions-bucket-name   = "unused-cul-cudl-transcriptions"
 enhancements-bucket-name     = "unused-cul-cudl-data-enhancements"
 source-bucket-name           = "unused-cul-cudl-data-source"
@@ -25,7 +25,7 @@ transform-lambda-bucket-sqs-notifications = [
 transform-lambda-information = [
   {
     "name"                     = "AWSLambda_TEI_SOLR_Listener"
-    "image_uri"                = "563181399728.dkr.ecr.eu-west-1.amazonaws.com/epsilon/solr-listener@sha256:17bd89f36ba61533b874ec73cf6f874fb82cad3846dbb6c5eaf058764597eb9e"
+    "image_uri"                = "330100528433.dkr.ecr.eu-west-1.amazonaws.com/epsilon/solr-listener@sha256:5f39a1ec9383065a2a90855849532b0eb24827e8887f0401a3b6017e418aeadf"
     "queue_name"               = "EpsilonIndexTEIQueue"
     "queue_delay_seconds"      = 10
     "vpc_name"                 = "epsilon-editorial-epsilon-ecs-vpc"
@@ -61,7 +61,7 @@ cloudfront_default_root_object      = "index.html"
 
 # Base Architecture
 cluster_name_suffix     = "epsilon-ecs"
-registered_domain_name  = "cudl-sandbox.net."
+registered_domain_name  = "epsilon.ac.uk."
 asg_desired_capacity    = 1 # n = number of tasks
 asg_max_size            = 1 # n + 1
 asg_allow_all_egress    = true
@@ -81,12 +81,12 @@ cloudwatch_log_group           = "/ecs/epsilon-editorial"
 
 # SOLR Worload
 solr_name_suffix       = "solr"
-solr_domain_name       = "epsilon-editorial-search"
+solr_domain_name       = "editorial-search"
 solr_application_port  = 8983
 solr_target_group_port = 8081
 solr_ecr_repositories = {
-  "epsilon/solr-api" = "sha256:9890cafd827aad9d33e0bdfeb1d90b88d8c8be7597083aa09e6f64c011f74f0e",
-  "epsilon/solr"     = "sha256:41ecf8d7242194ed22f560c9b15c95d2dcf77fb82f43d14c47fd75da49aec3c2"
+  "epsilon/solr-api" = "sha256:f26af50c2280663aa99cf91b338d3356eae76e650edcc83c44408d4591576cc0",
+  "epsilon/solr"     = "sha256:eb300986965baf9bc12168c7bbb8827c907ad4ec8a962cb0f54f33f4cf4ae8e8"
 }
 solr_ecs_task_def_volumes     = { "solr-volume" = "/var/solr" }
 solr_container_name_api       = "solr-api"
