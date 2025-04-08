@@ -153,7 +153,7 @@ async function handler(event) {
     }
     if (!privateSite || (isAuthorised && !redirectAfterAuth)) {
 
-        const url = getLocation('https://cudl-sandbox.net'+ request.uri)
+        const url = getLocation('https://epsilon.ac.uk'+ request.uri)
         const uri = url.pathname;
         const anchor = url.hash
         const is_search = /^\/search(\/+)*$/ig.test(uri)
