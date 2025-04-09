@@ -85,7 +85,7 @@ solr_domain_name       = "epsilon-staging-search"
 solr_application_port  = 8983
 solr_target_group_port = 8081
 solr_ecr_repositories = {
-  "epsilon/solr-api" = "sha256:9890cafd827aad9d33e0bdfeb1d90b88d8c8be7597083aa09e6f64c011f74f0e",
+  "epsilon/solr-api" = "sha256:f9b1cc141a6302ea844a307f38f1870ca5169bfb9a90aa827cb27a7a52e338a5",
   "epsilon/solr"     = "sha256:41ecf8d7242194ed22f560c9b15c95d2dcf77fb82f43d14c47fd75da49aec3c2"
 }
 solr_ecs_task_def_volumes     = { "solr-volume" = "/var/solr" }
