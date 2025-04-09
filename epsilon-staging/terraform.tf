@@ -16,7 +16,7 @@ terraform {
 
   backend "s3" {
     bucket         = "sandbox-cudl-terraform-state"
-    key            = "sandbox-epsilon-editorial-infra.tfstate"
+    key            = "sandbox-epsilon-staging-infra.tfstate"
     dynamodb_table = "terraform-state-lock-cudl"
     region         = "eu-west-1"
   }
