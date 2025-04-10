@@ -6,8 +6,10 @@ import cf from 'cloudfront';
 const kvsHandle = cf.kvs();
 
 const KeyPrivateSite = "privateSite"
+const keyDomain = "domain"
 const keySecret = "secret"
 const keyJwtDuration = "jwtDuration"
+let domain = "Not Found"
 let secret = "Not Found"
 let privateSite = "Not Found"
 let jwtDuration = 60*60*1000
@@ -70,14 +72,38 @@ function jwt_valid(received_token, secret) {
     return result;
 }
 
+function stripSubdomains(hostname) {
+    const parts = hostname.split('.');
+
+    let result = ''
+    if (parts.length < 3) {
+        result = hostname;
+    } else {
+        // A small list of common second-level domains.
+        const commonSecondLevelDomains = ['org.uk', 'ac.uk'];
+
+        const lastTwo = parts.slice(-2).join('.');
+        const lastThree = parts.slice(-3).join('.');
+
+        if (commonSecondLevelDomains.includes(lastTwo) && parts.length >= 3) {
+            result = lastThree;
+        } else {
+            result = lastTwo
+        }
+    }
+
+    return result;
+}
+
 async function handler(event) {
     let request = event.request;
     // Improve slicing so that it can deal with tld's better.
-    const domainTld = ('host' in request.headers) ?  (request.headers.host.value).split(/\./).slice(-2).join('.') : 'cudl-sandbox.net';
+    const domainTld = ('host' in request.headers) ?  stripSubdomains(request.headers.host.value) : domain;
     const cookieKey = domainTld+"Key"
     if (['GET','HEAD','OPTIONS'].includes(request.method)) {
         try {
             secret = await kvsHandle.get(keySecret)
+            domain = await kvsHandle.get(keyDomain)
             privateSite = await kvsHandle.get(KeyPrivateSite)
             jwtDuration = await kvsHandle.get(keyJwtDuration)
         } catch (err) {

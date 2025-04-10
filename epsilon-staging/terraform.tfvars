@@ -3,7 +3,7 @@ project                      = "epsilon"
 component                    = "cudl-data-workflows"
 subcomponent                 = "cudl-transform-lambda"
 destination-bucket-name      = "releases"
-web_frontend_domain_name     = "epsilon-staging.cudl-sandbox.net"
+web_frontend_domain_name     = "epsilon-staging.epsilon.ac.uk"
 transcriptions-bucket-name   = "unused-cul-cudl-transcriptions"
 enhancements-bucket-name     = "unused-cul-cudl-data-enhancements"
 source-bucket-name           = "unused-cul-cudl-data-source"
@@ -25,7 +25,7 @@ transform-lambda-bucket-sqs-notifications = [
 transform-lambda-information = [
   {
     "name"                     = "AWSLambda_TEI_SOLR_Listener"
-    "image_uri"                = "563181399728.dkr.ecr.eu-west-1.amazonaws.com/epsilon/solr-listener@sha256:17bd89f36ba61533b874ec73cf6f874fb82cad3846dbb6c5eaf058764597eb9e"
+    "image_uri"                = "330100528433.dkr.ecr.eu-west-1.amazonaws.com/epsilon/solr-listener@sha256:5f39a1ec9383065a2a90855849532b0eb24827e8887f0401a3b6017e418aeadf"
     "queue_name"               = "EpsilonIndexTEIQueue"
     "queue_delay_seconds"      = 10
     "vpc_name"                 = "epsilon-staging-epsilon-ecs-vpc"
@@ -53,7 +53,7 @@ lambda-alias-name = "LIVE"
 
 releases-root-directory-path        = "/data"
 efs-name                            = "cudl-data-releases-efs"
-cloudfront_route53_zone_id          = "Z035173135AOVWW8L57UJ"
+cloudfront_route53_zone_id          = "Z02382343G7Z7F9QNC05L"
 cloudfront_distribution_name        = "epsilon-staging"
 cloudfront_origin_path              = "/www"
 cloudfront_error_response_page_path = "/404.html"
@@ -61,7 +61,7 @@ cloudfront_default_root_object      = "index.html"
 
 # Base Architecture
 cluster_name_suffix     = "epsilon-ecs"
-registered_domain_name  = "cudl-sandbox.net."
+registered_domain_name  = "epsilon.ac.uk."
 asg_desired_capacity    = 1 # n = number of tasks
 asg_max_size            = 1 # n + 1
 asg_allow_all_egress    = true
@@ -70,23 +70,24 @@ ec2_additional_userdata = <<-EOF
 echo 1 > /proc/sys/vm/swappiness
 echo ECS_RESERVED_MEMORY=256 >> /etc/ecs/ecs.config
 EOF
-#route53_delegation_set_id      = "N02288771HQRX5TRME6CM"
-route53_zone_id_existing       = "Z035173135AOVWW8L57UJ"
-route53_zone_force_destroy     = true
+route53_zone_id_existing       = "Z02382343G7Z7F9QNC05L"
+route53_zone_force_destroy     = false
+acm_certificate_arn            = "arn:aws:acm:eu-west-1:330100528433:certificate/58b59805-85c4-47c7-863b-2eaef84de5d2"
+acm_certificate_arn_us-east-1  = "arn:aws:acm:us-east-1:330100528433:certificate/5783d7b2-4a67-4844-95a9-f78b855da7e8"
 alb_enable_deletion_protection = false
 alb_idle_timeout               = "900"
-vpc_cidr_block                 = "10.43.0.0/22" #1024 adresses
+vpc_cidr_block                 = "10.79.0.0/22" #1024 adresses
 vpc_public_subnet_public_ip    = false
 cloudwatch_log_group           = "/ecs/epsilon-staging"
 
 # SOLR Worload
 solr_name_suffix       = "solr"
-solr_domain_name       = "epsilon-staging-search"
+solr_domain_name       = "staging-search"
 solr_application_port  = 8983
 solr_target_group_port = 8081
 solr_ecr_repositories = {
   "epsilon/solr-api" = "sha256:f9b1cc141a6302ea844a307f38f1870ca5169bfb9a90aa827cb27a7a52e338a5",
-  "epsilon/solr"     = "sha256:41ecf8d7242194ed22f560c9b15c95d2dcf77fb82f43d14c47fd75da49aec3c2"
+  "epsilon/solr"     = "sha256:eb300986965baf9bc12168c7bbb8827c907ad4ec8a962cb0f54f33f4cf4ae8e8"
 }
 solr_ecs_task_def_volumes     = { "solr-volume" = "/var/solr" }
 solr_container_name_api       = "solr-api"
