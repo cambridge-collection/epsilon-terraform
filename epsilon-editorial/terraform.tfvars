@@ -72,10 +72,9 @@ echo ECS_RESERVED_MEMORY=256 >> /etc/ecs/ecs.config
 EOF
 #route53_delegation_set_id      = "N02288771HQRX5TRME6CM"
 route53_zone_id_existing       = "Z02382343G7Z7F9QNC05L"
-route53_zone_force_destroy     = true
-# Uncomment when moving to epsilon and change arns
-# acm_certificate_arn            = "arn:aws:acm:eu-west-1:330100528433:certificate/f8efa931-6cb9-4146-b025-a208b669a2b5"
-# acm_certificate_arn_us-east-1  = "arn:aws:acm:us-east-1:330100528433:certificate/d62f5c3e-89dc-4b4d-abbf-eca9fdaa2b9f"
+route53_zone_force_destroy     = false
+acm_certificate_arn            = "arn:aws:acm:eu-west-1:330100528433:certificate/58b59805-85c4-47c7-863b-2eaef84de5d2"
+acm_certificate_arn_us-east-1  = "arn:aws:acm:us-east-1:330100528433:certificate/5783d7b2-4a67-4844-95a9-f78b855da7e8"
 alb_enable_deletion_protection = false
 alb_idle_timeout               = "900"
 vpc_cidr_block                 = "10.77.0.0/22" #1024 adresses
