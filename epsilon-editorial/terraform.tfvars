@@ -73,6 +73,9 @@ EOF
 #route53_delegation_set_id      = "N02288771HQRX5TRME6CM"
 route53_zone_id_existing       = "Z028489118FY8DBPA2P7Q"
 route53_zone_force_destroy     = true
+# Uncomment when moving to epsilon and change arns
+# acm_certificate_arn            = "arn:aws:acm:eu-west-1:330100528433:certificate/f8efa931-6cb9-4146-b025-a208b669a2b5"
+# acm_certificate_arn_us-east-1  = "arn:aws:acm:us-east-1:330100528433:certificate/d62f5c3e-89dc-4b4d-abbf-eca9fdaa2b9f"
 alb_enable_deletion_protection = false
 alb_idle_timeout               = "900"
 vpc_cidr_block                 = "10.77.0.0/22" #1024 adresses
@@ -85,7 +88,7 @@ solr_domain_name       = "editorial-search"
 solr_application_port  = 8983
 solr_target_group_port = 8081
 solr_ecr_repositories = {
-  "epsilon/solr-api" = "sha256:f26af50c2280663aa99cf91b338d3356eae76e650edcc83c44408d4591576cc0",
+  "epsilon/solr-api" = "sha256:3272dbff92f90cebd574b901afe241aee487a4010d0d0887235b0eee1aa3d123",
   "epsilon/solr"     = "sha256:eb300986965baf9bc12168c7bbb8827c907ad4ec8a962cb0f54f33f4cf4ae8e8"
 }
 solr_ecs_task_def_volumes     = { "solr-volume" = "/var/solr" }
