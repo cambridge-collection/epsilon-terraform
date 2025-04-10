@@ -3,7 +3,7 @@ project                      = "epsilon"
 component                    = "cudl-data-workflows"
 subcomponent                 = "cudl-transform-lambda"
 destination-bucket-name      = "releases"
-web_frontend_domain_name     = "epsilon-editorial.darwinproject.link"
+web_frontend_domain_name     = "epsilon-editorial.epsilon.ac.uk"
 transcriptions-bucket-name   = "unused-cul-cudl-transcriptions"
 enhancements-bucket-name     = "unused-cul-cudl-data-enhancements"
 source-bucket-name           = "unused-cul-cudl-data-source"
@@ -53,7 +53,7 @@ lambda-alias-name = "LIVE"
 
 releases-root-directory-path        = "/data"
 efs-name                            = "cudl-data-releases-efs"
-cloudfront_route53_zone_id          = "Z028489118FY8DBPA2P7Q"
+cloudfront_route53_zone_id          = "Z02382343G7Z7F9QNC05L"
 cloudfront_distribution_name        = "epsilon-editorial"
 cloudfront_origin_path              = "/www"
 cloudfront_error_response_page_path = "/404.html"
@@ -61,7 +61,7 @@ cloudfront_default_root_object      = "index.html"
 
 # Base Architecture
 cluster_name_suffix     = "epsilon-ecs"
-registered_domain_name  = "darwinproject.link."
+registered_domain_name  = "epsilon.ac.uk."
 asg_desired_capacity    = 1 # n = number of tasks
 asg_max_size            = 1 # n + 1
 asg_allow_all_egress    = true
@@ -71,7 +71,7 @@ echo 1 > /proc/sys/vm/swappiness
 echo ECS_RESERVED_MEMORY=256 >> /etc/ecs/ecs.config
 EOF
 #route53_delegation_set_id      = "N02288771HQRX5TRME6CM"
-route53_zone_id_existing       = "Z028489118FY8DBPA2P7Q"
+route53_zone_id_existing       = "Z02382343G7Z7F9QNC05L"
 route53_zone_force_destroy     = true
 # Uncomment when moving to epsilon and change arns
 # acm_certificate_arn            = "arn:aws:acm:eu-west-1:330100528433:certificate/f8efa931-6cb9-4146-b025-a208b669a2b5"
@@ -88,7 +88,7 @@ solr_domain_name       = "editorial-search"
 solr_application_port  = 8983
 solr_target_group_port = 8081
 solr_ecr_repositories = {
-  "epsilon/solr-api" = "sha256:3272dbff92f90cebd574b901afe241aee487a4010d0d0887235b0eee1aa3d123",
+  "epsilon/solr-api" = "sha256:53c7b5fbe4c8c984d292df3564943ffb3c06dd8e18e7d9d151be7bda83a7b5c6",
   "epsilon/solr"     = "sha256:eb300986965baf9bc12168c7bbb8827c907ad4ec8a962cb0f54f33f4cf4ae8e8"
 }
 solr_ecs_task_def_volumes     = { "solr-volume" = "/var/solr" }
