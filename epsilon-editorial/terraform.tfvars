@@ -70,7 +70,6 @@ ec2_additional_userdata = <<-EOF
 echo 1 > /proc/sys/vm/swappiness
 echo ECS_RESERVED_MEMORY=256 >> /etc/ecs/ecs.config
 EOF
-#route53_delegation_set_id      = "N02288771HQRX5TRME6CM"
 route53_zone_id_existing       = "Z02382343G7Z7F9QNC05L"
 route53_zone_force_destroy     = false
 acm_certificate_arn            = "arn:aws:acm:eu-west-1:330100528433:certificate/58b59805-85c4-47c7-863b-2eaef84de5d2"
