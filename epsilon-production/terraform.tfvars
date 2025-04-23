@@ -3,7 +3,7 @@ project                      = "epsilon"
 component                    = "cudl-data-workflows"
 subcomponent                 = "cudl-transform-lambda"
 destination-bucket-name      = "releases"
-web_frontend_domain_name     = "epsilon.ac.uk"
+web_frontend_domain_name     = "production.epsilon.ac.uk"
 transcriptions-bucket-name   = "unused-cul-cudl-transcriptions"
 enhancements-bucket-name     = "unused-cul-cudl-data-enhancements"
 source-bucket-name           = "unused-cul-cudl-data-source"
@@ -86,7 +86,7 @@ solr_domain_name       = "search"
 solr_application_port  = 8983
 solr_target_group_port = 8081
 solr_ecr_repositories = {
-  "epsilon/solr-api" = "sha256:1ff8cd59410417a50b19a867879b2ae807c3bb977e29b214693e7ec906b22765",
+  "epsilon/solr-api" = "sha256:2804da94b24d7e5b05e75201069c90c8579ec08db41fcc6ef2313096d2e29444",
   "epsilon/solr"     = "sha256:eb300986965baf9bc12168c7bbb8827c907ad4ec8a962cb0f54f33f4cf4ae8e8"
 }
 solr_ecs_task_def_volumes     = { "solr-volume" = "/var/solr" }
