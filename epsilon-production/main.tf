@@ -51,6 +51,7 @@ module "cudl-data-processing" {
   cloudfront_origin_path                    = var.cloudfront_origin_path
   cloudfront_error_response_page_path       = var.cloudfront_error_response_page_path
   cloudfront_viewer_request_function_arn    = aws_cloudfront_function.epsilon.arn
+  cloudfront_alternative_domain_names       = [trimsuffix(var.registered_domain_name, ".")]
   acm_create_certificate                    = false
   acm_certificate_arn                       = var.acm_certificate_arn_us-east-1
   providers = {
