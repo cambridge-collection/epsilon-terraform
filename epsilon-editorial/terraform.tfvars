@@ -55,19 +55,19 @@ releases-root-directory-path        = "/data"
 efs-name                            = "cudl-data-releases-efs"
 cloudfront_route53_zone_id          = "Z02382343G7Z7F9QNC05L"
 cloudfront_distribution_name        = "epsilon-editorial"
-cloudfront_alternative_domain_names        = ["editorial.epsilon.ac.uk"]
+cloudfront_alternative_domain_names = ["editorial.epsilon.ac.uk"]
 cloudfront_origin_path              = "/www"
 cloudfront_error_response_page_path = "/404.html"
 cloudfront_default_root_object      = "index.html"
 
 # Base Architecture
-cluster_name_suffix     = "epsilon-ecs"
-registered_domain_name  = "epsilon.ac.uk."
-asg_desired_capacity    = 1 # n = number of tasks
-asg_max_size            = 1 # n + 1
-asg_allow_all_egress    = true
-ec2_instance_type       = "t3.large"
-ec2_additional_userdata = <<-EOF
+cluster_name_suffix            = "epsilon-ecs"
+registered_domain_name         = "epsilon.ac.uk."
+asg_desired_capacity           = 1 # n = number of tasks
+asg_max_size                   = 1 # n + 1
+asg_allow_all_egress           = true
+ec2_instance_type              = "t3.large"
+ec2_additional_userdata        = <<-EOF
 echo 1 > /proc/sys/vm/swappiness
 echo ECS_RESERVED_MEMORY=256 >> /etc/ecs/ecs.config
 EOF
