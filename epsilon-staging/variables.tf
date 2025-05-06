@@ -304,3 +304,8 @@ variable "web_frontend_domain_name" {
   type        = string
   description = "Domain name for cloudfront web frontend"
 }
+
+variable "cloudfront_alternative_domain_names" {
+  type        = list(string)
+  description = "Alternative Domain names for cloudfront web frontend"
+}
