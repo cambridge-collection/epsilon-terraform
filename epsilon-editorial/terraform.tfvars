@@ -55,6 +55,7 @@ releases-root-directory-path        = "/data"
 efs-name                            = "cudl-data-releases-efs"
 cloudfront_route53_zone_id          = "Z02382343G7Z7F9QNC05L"
 cloudfront_distribution_name        = "epsilon-editorial"
+cloudfront_alternative_domain_names        = ["editorial.epsilon.ac.uk"]
 cloudfront_origin_path              = "/www"
 cloudfront_error_response_page_path = "/404.html"
 cloudfront_default_root_object      = "index.html"
