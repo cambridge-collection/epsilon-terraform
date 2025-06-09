@@ -1,6 +1,6 @@
-# Darwin Configuration
+# Epsilon Platforms
 
-This is the Terraform configuration for the Darwin Platforms.
+This is the Terraform configuration for the Epsilon Platforms.
 Initially this will only cover the setting up the data loading process.
 
 ## Prerequisites 
@@ -129,4 +129,4 @@ This diagram shows the AWS infrastructure setup required for the data loading pr
 
 ### TODO
 
-The code in this repo was based on <https://github.com/cambridge-collection/cudl-terraform>. It contains (and creates) a number of things that aren't needed for the Manuscripts Catalogue platform. These items will be removed in the next phase of development.
+The code in this repo was based on <https://github.com/cambridge-collection/cudl-terraform>. It contains (and creates) a number of things that aren't needed for Epsilon. These items will be removed in the next phase of development.
