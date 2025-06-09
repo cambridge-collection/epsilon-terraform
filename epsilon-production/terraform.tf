@@ -16,7 +16,7 @@ terraform {
 
   backend "s3" {
     bucket         = "cul-darwin-terraform-state"
-    key            = "epsilon-editorial-infra.tfstate"
+    key            = "epsilon-production-infra.tfstate"
     dynamodb_table = "darwin-terraform-state-lock"
     region         = "eu-west-1"
   }
