@@ -87,7 +87,7 @@ solr_domain_name       = "editorial-search"
 solr_application_port  = 8983
 solr_target_group_port = 8081
 solr_ecr_repositories = {
-  "epsilon/solr-api" = "sha256:5c4284f06b953c8d1f3cc1dc8db9f927b8b1746aed86b612f8e5b3deebf319e8",
+  "epsilon/solr-api" = "sha256:6119a09243713fe68fe9d190dff7ddf58d910d192d607c89cb5b4b5f43946f47",
   "epsilon/solr"     = "sha256:d24bb9cdda0fa984ab17c73b5773dc687f85490db4277b7a9cc06f534cb61d0d"
 }
 solr_ecs_task_def_volumes     = { "solr-volume" = "/var/solr" }
