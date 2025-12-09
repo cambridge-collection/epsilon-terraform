@@ -35,7 +35,7 @@ transform-lambda-information = [
     "memory"                   = 1024
     "batch_window"             = 2
     "batch_size"               = 1
-    "maximum_concurrency"      = 5
+    "maximum_concurrency"      = 100
     "use_datadog_variables"    = false
     "use_additional_variables" = true
     "environment_variables" = {
@@ -86,8 +86,8 @@ solr_domain_name       = "search"
 solr_application_port  = 8983
 solr_target_group_port = 8081
 solr_ecr_repositories = {
-  "epsilon/solr-api" = "sha256:2fa606d92ed1fc768fd3ae8fad54f3dc92fb6315e275f4eb9b4d1118d59b9daf",
-  "epsilon/solr"     = "sha256:eb300986965baf9bc12168c7bbb8827c907ad4ec8a962cb0f54f33f4cf4ae8e8"
+  "epsilon/solr-api" = "sha256:dcadaf11837fdac5fe9a92abe1aa50c59d9a2a97826363c72a691d68c83a410b",
+  "epsilon/solr"     = "sha256:8cd12771b9770ce8bc61ae39863311669d372c1dbcfeff2d268310d783baaf99"
 }
 solr_ecs_task_def_volumes     = { "solr-volume" = "/var/solr" }
 solr_container_name_api       = "solr-api"
