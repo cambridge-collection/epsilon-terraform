@@ -1,5 +1,5 @@
 module "base_architecture" {
-  source = "git::https://github.com/cambridge-collection/terraform-aws-architecture-ecs.git?ref=v2.5.0"
+  source = "git::https://github.com/cambridge-collection/terraform-aws-architecture-ecs.git?ref=v4.4.1"
 
   name_prefix                    = local.base_name_prefix
   ec2_instance_type              = var.ec2_instance_type
@@ -11,11 +11,15 @@ module "base_architecture" {
   asg_max_size                   = var.asg_max_size
   alb_enable_deletion_protection = var.alb_enable_deletion_protection
   vpc_public_subnet_public_ip    = var.vpc_public_subnet_public_ip
+  vpc_nat_gateway_single         = true
   cloudwatch_log_group           = var.cloudwatch_log_group # TODO create log group
   vpc_cidr_block                 = var.vpc_cidr_block
   acm_create_certificate         = false
   acm_certificate_arn            = var.acm_certificate_arn
   tags                           = local.default_tags
+  providers = {
+    aws.us-east-1 = aws.us-east-1
+  }
 }
 
 module "cudl-data-processing" {
@@ -62,7 +66,7 @@ module "cudl-data-processing" {
 }
 
 module "solr" {
-  source = "git::https://github.com/cambridge-collection/terraform-aws-workload-ecs.git?ref=v3.6.0"
+  source = "git::https://github.com/cambridge-collection/terraform-aws-workload-ecs.git?ref=v4.4.0"
 
   name_prefix                                    = join("-", compact([local.environment, var.solr_name_suffix]))
   account_id                                     = data.aws_caller_identity.current.account_id
@@ -78,7 +82,7 @@ module "solr" {
   s3_task_execution_bucket                       = module.base_architecture.s3_bucket
   ecs_network_mode                               = "awsvpc"
   ecs_task_def_container_definitions             = jsonencode(local.solr_container_defs)
-  ecs_task_def_volumes                           = keys(var.solr_ecs_task_def_volumes)
+  ecs_task_def_volumes_efs                       = keys(var.solr_ecs_task_def_volumes)
   ecs_task_def_cpu                               = var.solr_ecs_task_def_cpu
   ecs_task_def_memory                            = local.solr_ecs_task_def_memory
   ecs_service_container_name                     = local.solr_container_name_api
