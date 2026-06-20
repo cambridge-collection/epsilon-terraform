@@ -138,7 +138,7 @@ async function handler(event) {
             const cookie = {}
             cookie[cookieKey] = {
                 "value" : token,
-                "attributes": "Secure; Path=/; Domain="+domainTld
+                "attributes": "Secure; HttpOnly; Path=/; Domain="+domainTld
             }
             redirectResponse = {
                 statusCode: 301,
