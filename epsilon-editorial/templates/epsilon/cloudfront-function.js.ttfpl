@@ -67,7 +67,6 @@ function stripSubdomains(hostname) {
     if (parts.length < 3) {
         result = hostname;
     } else {
-        // A small list of common second-level domains.
         const commonSecondLevelDomains = ['org.uk', 'ac.uk'];
 
         const lastTwo = parts.slice(-2).join('.');
@@ -101,7 +100,6 @@ async function handler(event) {
     privateSite = (privateSite === 'true') ? true: false
     const requiredBasicAuth = "Basic " + btoa(`${user}:${pass}`);
     let isAuthorised = false;
-    // Improve slicing so that it can deal with tld's better.
     const domainTld = ('host' in request.headers) ?  stripSubdomains(request.headers.host.value) : domain;
     const cookieKey = domainTld+"Key"
     if (privateSite && request.headers.authorization) {
@@ -123,7 +121,6 @@ async function handler(event) {
             const token = jwt_generate(header, claims, secret)
             const token_expired = (cookieKey in request.cookies) ? jwt_is_expired(request.cookies[cookieKey].value) : true
             if (!(cookieKey in request.cookies) || token_expired) {
-                // No cookie
                 redirectAfterAuth = true
             }
 
