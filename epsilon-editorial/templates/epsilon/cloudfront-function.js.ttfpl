@@ -154,7 +154,6 @@ async function handler(event) {
         const uri = url.pathname;
         const anchor = url.hash
         const is_search = /^\/search(\/+)*$/ig.test(uri)
-        const docId = (event.request.querystring['docId']) ? event.request.querystring['docId'].value.replace(/(^(\.\.\/+)+|^\/|\.xml.*$)/,'') : ''
 
         let response = {}
 
