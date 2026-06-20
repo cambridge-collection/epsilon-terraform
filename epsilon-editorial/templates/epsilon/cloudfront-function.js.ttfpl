@@ -82,6 +82,31 @@ function stripSubdomains(hostname) {
     return result;
 }
 
+const docTypeRedirects = {
+    letter: "Letters",
+    people: "People%2FOrganisations",
+    repository: "Holders",
+};
+
+function documentTypeRedirectQuery(querystring) {
+    let changed = false;
+    const parts = [];
+    Object.keys(querystring).forEach(key => {
+        const isDocType = /^f\d+-document-type$/.test(key);
+        const param = querystring[key];
+        const values = param.multiValue ? param.multiValue.map(v => v.value) : [param.value];
+        values.forEach(rawValue => {
+            let value = rawValue;
+            if (isDocType && docTypeRedirects.hasOwnProperty(value)) {
+                value = docTypeRedirects[value];
+                changed = true;
+            }
+            parts.push(key + "=" + value);
+        });
+    });
+    return changed ? parts.join("&") : null;
+}
+
 async function handler(event) {
     let request = event.request;
     let redirectAfterAuth = false
@@ -158,6 +183,7 @@ async function handler(event) {
         let response = {}
 
         if (is_search) {
+            const docTypeQuery = documentTypeRedirectQuery(event.request.querystring)
             if (Object.values(event.request.querystring).some(s => /;([-_a-zA-Z0-9]+=)/ig.test(s.value))) {
                 let final = []
                 Object.keys(event.request.querystring)
@@ -196,6 +222,14 @@ async function handler(event) {
                     statusDescription: 'Moved Permanently',
                     headers:
                         {"location": {"value": "/advanced-search"}}
+                }
+            }
+            else if (docTypeQuery !== null) {
+                response = {
+                    statusCode: 301,
+                    statusDescription: 'Moved Permanently',
+                    headers:
+                        {"location": {"value": "/search?" + docTypeQuery}}
                 }
             }
             else {
