@@ -56,3 +56,26 @@ resource "aws_cloudfrontkeyvaluestore_key" "jwtDuration" {
   key                 = "jwtDuration"
   value               = data.aws_ssm_parameter.cudl_viewer_cloudfront_jwt_duration.value
 }
+
+resource "aws_cloudfront_cache_policy" "thirty_days" {
+  name        = "${local.environment}-caching-30-days"
+  comment     = "Managed-CachingOptimized with a 30 day default TTL"
+  min_ttl     = 1
+  default_ttl = 2592000
+  max_ttl     = 31536000
+
+  parameters_in_cache_key_and_forwarded_to_origin {
+    enable_accept_encoding_brotli = true
+    enable_accept_encoding_gzip   = true
+
+    cookies_config {
+      cookie_behavior = "none"
+    }
+    headers_config {
+      header_behavior = "none"
+    }
+    query_strings_config {
+      query_string_behavior = "none"
+    }
+  }
+}
