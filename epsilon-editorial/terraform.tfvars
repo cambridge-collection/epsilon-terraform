@@ -25,7 +25,7 @@ transform-lambda-bucket-sqs-notifications = [
 transform-lambda-information = [
   {
     "name"                     = "AWSLambda_TEI_SOLR_Listener"
-    "image_uri"                = "330100528433.dkr.ecr.eu-west-1.amazonaws.com/epsilon/solr-listener@sha256:af9641da791dbc525e5e48452277d6e87efb77026f37a272ec36fc259b0f87c6"
+    "image_uri"                = "330100528433.dkr.ecr.eu-west-1.amazonaws.com/epsilon/solr-listener@sha256:aabdaa95842a5df72c9f54182af8c507ba32fa48ba3fc18fe2cf28f55b961d35"
     "queue_name"               = "EpsilonIndexTEIQueue"
     "queue_delay_seconds"      = 10
     "vpc_name"                 = "epsilon-editorial-epsilon-ecs-vpc"
@@ -90,7 +90,7 @@ solr_domain_name       = "editorial-search"
 solr_application_port  = 8983
 solr_target_group_port = 8081
 solr_ecr_repositories = {
-  "epsilon/solr-api" = "sha256:c3689f06aa5ec519ef87439fc391f33f50b86719ad7ba7b68432ea22335009b9",
+  "epsilon/solr-api" = "sha256:59aebd59590620a275cfb935d3d8dba66281e84d5c9df8fd3cf1b70753e4ec9b",
   "epsilon/solr"     = "sha256:8cd12771b9770ce8bc61ae39863311669d372c1dbcfeff2d268310d783baaf99"
 }
 solr_ecs_task_def_volumes     = { "solr-volume" = "/var/solr" }

@@ -25,7 +25,7 @@ transform-lambda-bucket-sqs-notifications = [
 transform-lambda-information = [
   {
     "name"                     = "AWSLambda_TEI_SOLR_Listener"
-    "image_uri"                = "330100528433.dkr.ecr.eu-west-1.amazonaws.com/epsilon/solr-listener@sha256:af9641da791dbc525e5e48452277d6e87efb77026f37a272ec36fc259b0f87c6"
+    "image_uri"                = "330100528433.dkr.ecr.eu-west-1.amazonaws.com/epsilon/solr-listener@sha256:aabdaa95842a5df72c9f54182af8c507ba32fa48ba3fc18fe2cf28f55b961d35"
     "queue_name"               = "EpsilonIndexTEIQueue"
     "queue_delay_seconds"      = 10
     "vpc_name"                 = "epsilon-production-epsilon-ecs-vpc"
@@ -60,6 +60,7 @@ cloudfront_error_response_page_path = "/404.html"
 cloudfront_default_root_object      = "index.html"
 cloudfront_access_logging           = true
 cloudfront_access_logging_bucket    = "production-darwin-cloudfront-access-logs.s3.amazonaws.com"
+# cloudfront_default_cache_policy is set in main.tf, cloudfront_ordered_cache_behaviors in locals.tf
 
 # Base Architecture
 cluster_name_suffix            = "epsilon-ecs"
@@ -88,7 +89,7 @@ solr_domain_name       = "search"
 solr_application_port  = 8983
 solr_target_group_port = 8081
 solr_ecr_repositories = {
-  "epsilon/solr-api" = "sha256:46abd4a56f78edbb079d4c50958623687a396736ac4d25e3290894a593401fb9",
+  "epsilon/solr-api" = "sha256:1dd980cdd3980e52c666583fe4d3b78259fa17b05792464c700c635e53ad3330",
   "epsilon/solr"     = "sha256:8cd12771b9770ce8bc61ae39863311669d372c1dbcfeff2d268310d783baaf99"
 }
 solr_ecs_task_def_volumes     = { "solr-volume" = "/var/solr" }
