@@ -91,7 +91,7 @@ solr_application_port  = 8983
 solr_target_group_port = 8081
 solr_ecr_repositories = {
   "epsilon/solr-api" = "sha256:59aebd59590620a275cfb935d3d8dba66281e84d5c9df8fd3cf1b70753e4ec9b",
-  "epsilon/solr"     = "sha256:8cd12771b9770ce8bc61ae39863311669d372c1dbcfeff2d268310d783baaf99"
+  "epsilon/solr"     = "sha256:17aba7e54b18811e2211937fbc311a8fa13fd32b79f8dc9a57325754605cf74e"
 }
 solr_ecs_task_def_volumes     = { "solr-volume" = "/var/solr" }
 solr_container_name_api       = "solr-api"
